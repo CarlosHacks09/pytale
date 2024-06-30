@@ -119,6 +119,16 @@ while running:
         else:
             pellet.draw(screen)
 
+        # Collision detection
+        pellet_rect = pygame.Rect(pellet.x - 10, pellet.y - 10, 20, 20)
+        heart_rect = pygame.Rect(heart_x, heart_y, heart_width, heart_height)
+        if pellet_rect.colliderect(heart_rect):
+            heart_hp -= 15
+            pellets.remove(pellet)
+            if heart_hp <= 0:
+                print("Game Over!")
+                running = False
+
     # Update the display
     pygame.display.flip()
 
